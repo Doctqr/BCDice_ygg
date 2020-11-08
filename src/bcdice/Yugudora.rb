@@ -201,6 +201,8 @@ MESSAGETEXT
             text = send("get_ra#{$1.to_i}_table")
           when 110, 120, 130, 140
             text = get_ra100_table
+          when 150
+            text = '因子崩壊【キャラロスト】'
           else
             text = "指定の暴走率の暴走ロールはありません"
         end
@@ -258,6 +260,9 @@ MESSAGETEXT
         return "#{text}このコマンドは数値を付けてください" if($1.nil? == true)
         
         case $1.to_i
+          when -999..5
+            h, h3 = 0, 0
+            text += "HPが#{h}回復"
           when 6, 7
             h, h3 = 1, 1
             text += "HPが#{h}(#{h1}[#{h2}]+#{h3})回復"
@@ -536,7 +541,7 @@ MESSAGETEXT
    return get_table_by_1d6(table)
   end
   
-  def get_fa1_table()
+  def get_fa2_table()
     table = [
       '能力変化【能力がまったく別ものに変化する】',
       '能力変化【能力がまったく別ものに変化する】',
@@ -555,7 +560,7 @@ MESSAGETEXT
    return "因子変化判定 ＞ [#{num}] #{text} #{psy}"
   end
   
-  def get_fa2_table()
+  def get_fa1_table()
     table = [
       '聴覚崩壊【聴覚に異常が起きる。幻聴、難聴、失聴、など】',
       '視覚崩壊【視覚に異常が起こる。幻覚、色盲、失明、など】',
